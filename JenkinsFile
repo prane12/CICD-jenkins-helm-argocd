@@ -34,7 +34,7 @@ pipeline {
         stage('Push Docker Image to Registry') {
             steps {
                 script {
-                    // Log in to Docker registry and push the Docker image
+                    // Log in to the Docker registry and push the Docker image
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                         sh "echo ${DOCKERHUB_PASSWORD} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin"
                         sh "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
